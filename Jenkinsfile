@@ -23,7 +23,7 @@ pipeline {
             sh "cd ${env.SERVICE}/ && git push --set-upstream https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUB_ORGANIZATION}/${env.SERVICE} release/`cat version`"
             sh "cd ${env.SERVICE}/ && git checkout master"
             sh "cp increment_version.sh ${env.SERVICE}/ && chmod +x ${env.SERVICE}/increment_version.sh"
-            sh "cd ${env.SERVICE}/ && ./increment_version.sh"
+            sh "cd ${env.SERVICE}/ && sh increment_version.sh"
             sh "cd ${env.SERVICE}/ && git add version"
             sh "cd ${env.SERVICE}/ && git commit -am 'Bumped up version'"
             sh "cd ${env.SERVICE}/ && git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUB_ORGANIZATION}/${env.SERVICE}"
