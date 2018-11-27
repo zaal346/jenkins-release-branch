@@ -19,7 +19,7 @@ pipeline {
             sh "git config --global user.email ${env.GITHUB_USER_EMAIL}"
             sh "git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUB_ORGANIZATION}/${env.SERVICE}"
             sh "version=`cat ${env.SERVICE}/version`"
-            sh "cd ${env.SERVICE}/ && git checkout -b release/\`cat ${env.SERVICE}/version`"
+            sh "cd ${env.SERVICE}/ && git checkout -b release/`cat ${env.SERVICE}/version`"
             sh "cd ${env.SERVICE}/ && git push --set-upstream https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${env.GITHUB_ORGANIZATION}/${env.SERVICE} release/`cat ${env.SERVICE}/version`"
             sh "cd ${env.SERVICE}/ && git checkout master"
             sh "cp increment_version.sh ${env.SERVICE}/"
