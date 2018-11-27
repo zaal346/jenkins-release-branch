@@ -9,7 +9,7 @@ pipeline {
     label 'kubegit'
   }
   environment {
-    APP_NAME = "{env.SERVICE}"
+    APP_NAME = "${env.SERVICE}"
   }
   stages {
     stage('Increase version number') {
